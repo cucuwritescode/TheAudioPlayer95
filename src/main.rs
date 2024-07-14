@@ -1,5 +1,8 @@
-//arrancamos importando los modulos que voy a necesitar 
-//del crate de symophonia para manejar archivos wav
+mod ui;
+use gtk::prelude::*;
+use gtk::Application;
+//modulos que voy a necesitar del crate 
+//de symophonia para manejar archivos wav
 use symphonia::core::codecs::DecoderOptions;
 use symphonia::core::formats::FormatOptions;
 use symphonia::core::io::MediaSourceStream;
@@ -29,7 +32,9 @@ fn main() {
     ).expect("Failed to probe format");
     let format= probed.format; //extraemos el formato (lo almaceno en una variable)
     let track= format.tracks().iter()
-
+    .find()
+    let track = format.tracks().iter()
+    .fi
 
 
     
