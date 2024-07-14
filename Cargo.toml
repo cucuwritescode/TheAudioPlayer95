@@ -4,6 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-cpal = "0.14"
-rodio = "0.15"
-hound = "3.4"
+cpal ="0.14"
+symphonia= "0.5.1"
+rodio ="0.15"
+hound ="3.4"
+fundsp="0.18.1"
+
