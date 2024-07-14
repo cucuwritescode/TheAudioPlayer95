@@ -21,13 +21,16 @@ fn main() {
     let buf_reader= BufReader::new(File);
     let media_source_stream= MediaSourceStream::new(Box::new(buf_reader)),Default::default();
     let hint= Hint::new();
-    let probed= get_probe().format(
+    let probed= get_probe().format( //para descifrar el formato del archivo de audio
         &hint,
         media_source_stream,
         &FormatOptions::default(),
         &MetadataOptions::default(),
     ).expect("Failed to probe format");
-    
+    let format= probed.format; //extraemos el formato (lo almaceno en una variable)
+    let track= format.tracks().iter()
+
+
 
     
 }
