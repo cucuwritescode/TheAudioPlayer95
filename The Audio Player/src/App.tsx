@@ -1,23 +1,24 @@
 import React, { useState, useRef } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { styleReset, Button, Window, WindowHeader, WindowContent, ProgressBar, MenuList, MenuListItem } from "react95";
-import original from "react95/dist/themes/original";
+import original from "react95/dist/themes/original"; // Use original theme for GUI components
 import "./App.css";
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
   body {
     font-family: 'ms_sans_serif';
+    background-image: url('https://baloo.neocities.org/Images/planetbg5.jpg'); // Use the image URL you found
+    background-size: cover;
+    background-position: center;
   }
 `;
 
-const Container = styled.div`
+const AppContainer = styled.div`
+  height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  background-color: #008080;
 `;
 
 const Controls = styled.div`
@@ -94,7 +95,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={original}>
       <GlobalStyles />
-      <Container>
+      <AppContainer>
         <Window style={{ width: 400 }}>
           <WindowHeader>
             <span>the-audio-player.exe</span>
@@ -132,7 +133,7 @@ const App: React.FC = () => {
             ) : null}
           </WindowContent>
         </Window>
-      </Container>
+      </AppContainer>
     </ThemeProvider>
   );
 };
