@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
-import { invoke } from "@tauri-apps/api/tauri";
 import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, ProgressBar, MenuList, MenuListItem, Monitor, AppBar, Toolbar } from "react95";
 import original from "react95/dist/themes/millenium"; // Use original theme for GUI components
 import "./App.css";
@@ -56,27 +55,26 @@ const App: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [songName, setSongName] = useState("");
   const [volume, setVolume] = useState(50); // Added state for slider (volume control)
-  const [systemTime, setSystemTime] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handlePlayPause = () => {
-    if (isPlaying) {
-      invoke("pause_audio");
-    } else {
-      invoke("resume_audio");
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
     }
-    setIsPlaying(!isPlaying);
-  };
-
-  const handleStop = () => {
-    invoke("stop_audio");
-    setIsPlaying(false);
   };
 
   const handleVolumeChange = (value: number) => {
     setVolume(value);
-    // Handle volume change logic here
+    if (audioRef.current) {
+      audioRef.current.volume = value / 100; // Volume range is 0 to 1
+    }
   };
 
   const simulateLoadingProgress = (file: File) => {
@@ -93,9 +91,11 @@ const App: React.FC = () => {
       setProgress(100);
       setTimeout(() => {
         setLoading(false);
-        invoke("play_audio", { file_path: file.path })
-          .then(() => setIsPlaying(true))
-          .catch((err) => console.error("Failed to play audio:", err));
+        if (audioRef.current) {
+          audioRef.current.src = reader.result as string;
+          audioRef.current.load();
+          setIsPlaying(false);
+        }
       }, 500); // Delay hiding the progress bar to show 100% for a moment
     };
 
@@ -144,16 +144,20 @@ const App: React.FC = () => {
       <AppContainer>
         <StyledAppBar>
           <Toolbar>
-            <Button onClick={handleMenuClick}>
-              <img src="https://64.media.tumblr.com/33e368bd4b99ee756fb59d367972e0b4/a3308f90a5978617-32/s540x810/970a4ede9f82f9db2069ce999a2754e7ee98e29a.png" alt="Start" style={{ marginRight: 4 }} />
-              Start
+            <Button variant="menu" size="sm">
+              <img
+                src="https://64.media.tumblr.com/33e368bd4b99ee756fb59d367972e0b4/a3308f90a5978617-32/s540x810/970a4ede9f82f9db2069ce999a2754e7ee98e29a.png"
+                alt="start logo"
+                style={{ height: '45px',marginRight: '4px' }}
+              />
+              The Audio Player95
             </Button>
           </Toolbar>
         </StyledAppBar>
         <WindowContainer>
           <Window style={{ width: 600 }}>
             <WindowHeader>
-              <span>the-audio-player.exe</span>
+              <span>the-audio-player95.exe</span>
             </WindowHeader>
             <WindowContent>
               <MonitorContainer>
@@ -178,27 +182,34 @@ const App: React.FC = () => {
                 style={{ display: 'none' }} 
                 onChange={handleFileChange} 
               />
+              <audio ref={audioRef} />
               <Controls>
                 <Button onClick={handlePlayPause}>
                   {isPlaying ? 'Pause' : 'Play'}
                 </Button>
-                <Button onClick={handleStop}>
+                <Button onClick={() => {
+                  if (audioRef.current) {
+                    audioRef.current.currentTime = 0;
+                    setIsPlaying(false);
+                    audioRef.current.pause();
+                  }
+                }}>
                   Stop
                 </Button>
+                <Slider
+                  min={0}
+                  max={100}
+                  value={volume}
+                  onChange={handleVolumeChange}
+                  width={150}
+                  style={{ marginLeft: '10px' }}
+                />
               </Controls>
               {loading && (
                 <div style={{ width: '100%', marginTop: '10px' }}>
                   <ProgressBar value={progress} />
                 </div>
               )}
-              <div style={{ width: '100%', marginTop: '10px' }}>
-                <Slider
-                  min={0}
-                  max={100}
-                  defaultValue={volume}
-                  onChange={(e, value) => handleVolumeChange(value as number)}
-                />
-              </div>
             </WindowContent>
           </Window>
         </WindowContainer>
