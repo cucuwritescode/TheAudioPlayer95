@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { styleReset, Button, Window, WindowHeader, WindowContent, ProgressBar, MenuList, MenuListItem } from "react95";
 import original from "react95/dist/themes/original"; // Use original theme for GUI components
@@ -46,43 +46,60 @@ const App: React.FC = () => {
     }
   };
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      const fileURL = URL.createObjectURL(file);
+  const simulateLoadingProgress = (file: File) => {
+    const reader = new FileReader();
+    const fakeProgressIncrement = 1; // Increment progress by 1% each step
+    const fakeLoadingTime = 500; // 500ms per step to make the progress bar slower
+
+    reader.onloadstart = () => {
+      console.log("File loading started");
       setLoading(true);
       setProgress(0); // Reset progress bar
-      console.log("Loading file:", file.name);
+    };
 
-      try {
-        const response = await fetch(fileURL);
-        const reader = response.body?.getReader();
-        const contentLength = +response.headers.get('Content-Length')!;
-        
-        let loaded = 0;
-        reader?.read().then(function processResult(result) {
-          if (result.done) {
-            setLoading(false);
-            setProgress(100);
-            console.log("File loaded:", file.name);
-            return;
-          }
-
-          loaded += result.value.length;
-          setProgress((loaded / contentLength) * 100);
-
-          return reader.read().then(processResult);
-        });
-        
+    reader.onloadend = () => {
+      console.log("File loading ended");
+      setProgress(100);
+      setTimeout(() => {
+        setLoading(false);
         if (audioRef.current) {
-          audioRef.current.src = fileURL;
+          audioRef.current.src = reader.result as string;
           audioRef.current.load();
           setIsPlaying(false);
         }
-      } catch (error) {
-        console.error("Error loading file:", error);
-        setLoading(false);
-      }
+      }, 500); // Delay hiding the progress bar to show 100% for a moment
+    };
+
+    reader.onerror = () => {
+      console.error("Error loading file:", reader.error);
+      setLoading(false);
+    };
+
+    const simulateProgress = () => {
+      setTimeout(() => {
+        setProgress((prev) => {
+          const nextProgress = prev + fakeProgressIncrement;
+          console.log(`Updating progress: ${nextProgress}%`);
+          if (nextProgress >= 100) {
+            reader.onloadend(null as any);
+            return 100;
+          } else {
+            simulateProgress();
+            return nextProgress;
+          }
+        });
+      }, fakeLoadingTime);
+    };
+
+    console.log("Starting to read file");
+    reader.readAsDataURL(file);
+    simulateProgress();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const file = e.target.files[0];
+      simulateLoadingProgress(file);
     }
   };
 
@@ -91,6 +108,10 @@ const App: React.FC = () => {
       fileInputRef.current.click();
     }
   };
+
+  useEffect(() => {
+    console.log(`Loading: ${loading}, Progress: ${progress}%`);
+  }, [loading, progress]);
 
   return (
     <ThemeProvider theme={original}>
@@ -128,9 +149,11 @@ const App: React.FC = () => {
                 Stop
               </Button>
             </Controls>
-            {loading ? (
-              <ProgressBar value={progress} max={100} style={{ width: '100%', marginTop: '10px' }} />
-            ) : null}
+            {loading && (
+              <div style={{ width: '100%', marginTop: '10px' }}>
+                <ProgressBar value={progress} />
+              </div>
+            )}
           </WindowContent>
         </Window>
       </AppContainer>
