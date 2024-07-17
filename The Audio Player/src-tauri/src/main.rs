@@ -43,7 +43,7 @@ fn u24_to_f32(sample: u24) -> f32 {
 fn i24_to_f32(sample: i24) -> f32 {
     let bytes = sample.to_ne_bytes();
     let value = ((bytes[0] as u32) << 16) | ((bytes[1] as u32) << 8) | (bytes[2] as u32);
-    value as f32 / 8388607.0 // S24 is signed, so divide by 8388607.0
+    value as f32 / 8388607.0 
 }
 
 fn play_audio(file_path: &str, audio_player: &State<'_, AudioPlayer>) -> Result<(), Box<dyn std::error::Error>> {

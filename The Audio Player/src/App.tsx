@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, MenuList, MenuListItem, Monitor, AppBar, Toolbar } from "react95";
-import original from "react95/dist/themes/original"; // Use original theme for GUI components
+import original from "react95/dist/themes/original"; 
 import { invoke } from '@tauri-apps/api/tauri';
 import "./App.css";
 
@@ -59,7 +59,7 @@ const StyledMonitor = styled(Monitor)`
 
 const App: React.FC = () => {
   const [songName, setSongName] = useState("");
-  const [volume, setVolume] = useState(50); // Added state for slider (volume control)
+  const [volume, setVolume] = useState(50); 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handlePlayPause = async () => {
@@ -83,13 +83,13 @@ const App: React.FC = () => {
 
   const handleVolumeChange = (value: number) => {
     setVolume(value);
-    // Handle volume change logic if necessary
+   
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      setSongName(file.name); // Set the song name from the file name
+      setSongName(file.name); 
     }
   };
 
@@ -143,7 +143,7 @@ const App: React.FC = () => {
                   Play/Pause
                 </Button>
                 <Button onClick={() => {
-                  // Handle stop logic if necessary
+                 
                 }}>
                   Stop
                 </Button>
