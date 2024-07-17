@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
-import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, MenuList, MenuListItem, Monitor, AppBar, Toolbar } from "react95";
-import original from "react95/dist/themes/original"; 
-import { invoke } from '@tauri-apps/api/tauri';
+import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, ProgressBar, MenuList, MenuListItem, Monitor, AppBar, Toolbar } from "react95";
+import original from "react95/dist/themes/millenium"; // Use original theme for GUI components
 import "./App.css";
+import { invoke } from '@tauri-apps/api/tauri';
 
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
@@ -50,46 +50,84 @@ const StyledAppBar = styled(AppBar)`
   height: 30px; /* Make the AppBar thinner */
 `;
 
-const StyledMonitor = styled(Monitor)`
-  margin-left: 10px;
-  width: 200px;
-  background: white;
-  color: lime;
-`;
-
 const App: React.FC = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [songName, setSongName] = useState("");
-  const [volume, setVolume] = useState(50); 
+  const [volume, setVolume] = useState(50); // Added state for slider (volume control)
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handlePlayPause = async () => {
-    if (fileInputRef.current && fileInputRef.current.files && fileInputRef.current.files.length > 0) {
-      const file = fileInputRef.current.files[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        const fileInfo = {
-          path: reader.result as string
-        };
-
-        try {
-          invoke('play', { fileInfo });
-        } catch (error) {
-          console.error('Error:', error);
-        }
-      };
-      reader.readAsDataURL(file);
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      invoke('pause');
+    } else {
+      invoke('play');
     }
+    setIsPlaying(!isPlaying);
   };
 
   const handleVolumeChange = (value: number) => {
     setVolume(value);
-   
+    if (audioRef.current) {
+      audioRef.current.volume = value / 100; // Volume range is 0 to 1
+    }
   };
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const simulateLoadingProgress = (file: File) => {
+    const reader = new FileReader();
+    
+    reader.onloadstart = () => {
+      console.log("File loading started");
+      setLoading(true);
+      setProgress(0); // Reset progress bar
+    };
+
+    reader.onloadend = () => {
+      console.log("File loading ended");
+      setProgress(100);
+      setTimeout(() => {
+        setLoading(false);
+        setSongName(file.name); // Set the song name from the file name
+        invoke('play', { path: reader.result as string });
+      }, 500); // Delay hiding the progress bar to show 100% for a moment
+    };
+
+    reader.onerror = () => {
+      console.error("Error loading file:", reader.error);
+      setLoading(false);
+    };
+
+    reader.readAsDataURL(file);
+    startProgressSimulation(); // Start the fake progress simulation
+  };
+
+  const startProgressSimulation = () => {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    timerRef.current = setInterval(() => {
+      setProgress(prev => {
+        const nextProgress = prev + 1;
+        if (nextProgress >= 100) {
+          clearInterval(timerRef.current!);
+          return 100;
+        }
+        return nextProgress;
+      });
+    }, 100); // Update progress every 100ms
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      setSongName(file.name); 
+      if (file.name.length <= 255) {
+        simulateLoadingProgress(file);
+      } else {
+        console.error("File path is too long");
+      }
     }
   };
 
@@ -127,9 +165,14 @@ const App: React.FC = () => {
                     <span role="img" aria-label="file">📁</span> Load File
                   </MenuListItem>
                 </MenuList>
-                <StyledMonitor>
+                <Monitor
+                  backgroundStyles={{ background: 'white' }}
+                  textStyles={{ color: 'lime' }} // Change text color to lime (green)
+                  showSideButtons={false}
+                  style={{ marginLeft: '10px', width: '200px' }}
+                >
                   <div>{songName || "No song loaded"}</div>
-                </StyledMonitor>
+                </Monitor>
               </MonitorContainer>
               <input 
                 type="file" 
@@ -138,12 +181,14 @@ const App: React.FC = () => {
                 style={{ display: 'none' }} 
                 onChange={handleFileChange} 
               />
+              <audio ref={audioRef} />
               <Controls>
                 <Button onClick={handlePlayPause}>
-                  Play/Pause
+                  {isPlaying ? 'Pause' : 'Play'}
                 </Button>
                 <Button onClick={() => {
-                 
+                  invoke('stop');
+                  setIsPlaying(false);
                 }}>
                   Stop
                 </Button>
@@ -152,8 +197,15 @@ const App: React.FC = () => {
                   max={100}
                   value={volume}
                   onChange={handleVolumeChange}
+                  width={150}
+                  style={{ marginLeft: '10px' }}
                 />
               </Controls>
+              {loading && (
+                <div style={{ width: '100%', marginTop: '10px' }}>
+                  <ProgressBar value={progress} />
+                </div>
+              )}
             </WindowContent>
           </Window>
         </WindowContainer>
