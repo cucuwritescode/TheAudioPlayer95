@@ -5,15 +5,15 @@ description = "A Tauri App"
 authors = ["you"]
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+tauri = { version = "1", features = ["fs-all", "shell-all"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+symphonia = { version = "0.5.1", features = ["all"] }
+rodio = "0.15"
 
 [build-dependencies]
 tauri-build = { version = "1", features = [] }
-
-[dependencies]
-tauri = { version = "1", features = ["shell-open"] }
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!
