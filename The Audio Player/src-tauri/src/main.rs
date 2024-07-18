@@ -2,32 +2,36 @@
     all(not(debug_assertions), target_os = "windows"),
     windows_subsystem = "windows"
 )]
+
+use tauri::{CustomMenuItem, Menu, MenuItem, Submenu, State};
 use std::sync::{Arc, Mutex};
-use tauri::{CustomMenuItem, Menu, MenuItem, Submenu};
+use cpal::traits::{DeviceTrait, HostTrait, StreamTrait};
+
+// Make sure to import the `AudioStreamer` and other necessary types
+mod player;
 use player::AudioStreamer;
 
-#[tauri::command]
-fn play_audio(streamer: State<'_, Arc<Mutex<AudioStreamer>>>, file_path: String) {
-    let mut streamer = streamer.lock().unwrap();
-    let file = std::fs::File::open(file_path).unwrap();
-    let reader = std::io::BufReader::new(file);
-
-    *streamer = AudioStreamer::new(reader);
-    let device = output::initialize_output();
-    streamer.start(&device);
+struct AudioStreamerState {
+    streamer: Arc<Mutex<AudioStreamer>>,
 }
 
 #[tauri::command]
-fn stop_audio(streamer: State<'_, Arc<Mutex<AudioStreamer>>>) {
-    let mut streamer = streamer.lock().unwrap();
-    streamer.stop();
+fn play_audio(state: State<'_, AudioStreamerState>, file_path: String) {
+    let streamer = state.streamer.lock().unwrap();
+    // Add code to play audio using the streamer and file_path
+}
+
+#[tauri::command]
+fn stop_audio(state: State<'_, AudioStreamerState>) {
+    let streamer = state.streamer.lock().unwrap();
+    // Add code to stop audio using the streamer
 }
 
 fn main() {
-    let streamer = Arc::new(Mutex::new(AudioStreamer::new(std::io::empty())));
-
     tauri::Builder::default()
-        .manage(streamer)
+        .manage(AudioStreamerState {
+            streamer: Arc::new(Mutex::new(AudioStreamer::new())),
+        })
         .invoke_handler(tauri::generate_handler![play_audio, stop_audio])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

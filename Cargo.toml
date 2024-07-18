@@ -4,13 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-cpal ="0.14"
-symphonia= "0.5.1" 
-rodio ="0.15"
-hound ="3.4"
-gtk = "0.9"
-fundsp="0.18.1"
-gdk-pixbuf = "0.9"
-glib = "0.10"
-gstreamer = "0.17"
-gstreamer-pbutils = "0.17"
+tauri = { version = "1.0", features = ["api-all"] }
+symphonia = { version = "0.5.4", features = ["aac", "flac", "mp3", "vorbis", "wav"] }

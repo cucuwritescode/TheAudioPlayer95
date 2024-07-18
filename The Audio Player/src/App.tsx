@@ -57,77 +57,27 @@ const App: React.FC = () => {
   const [songName, setSongName] = useState("");
   const [volume, setVolume] = useState(50); // Added state for slider (volume control)
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const handlePlayPause = () => {
     if (isPlaying) {
-      invoke('pause');
+      invoke('stop_audio');
+      setIsPlaying(false);
     } else {
-      invoke('play');
+      invoke('play_audio', { file_path: songName });
+      setIsPlaying(true);
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleVolumeChange = (value: number) => {
     setVolume(value);
-    if (audioRef.current) {
-      audioRef.current.volume = value / 100; // Volume range is 0 to 1
-    }
-  };
-
-  const simulateLoadingProgress = (file: File) => {
-    const reader = new FileReader();
-    
-    reader.onloadstart = () => {
-      console.log("File loading started");
-      setLoading(true);
-      setProgress(0); // Reset progress bar
-    };
-
-    reader.onloadend = () => {
-      console.log("File loading ended");
-      setProgress(100);
-      setTimeout(() => {
-        setLoading(false);
-        setSongName(file.name); // Set the song name from the file name
-        invoke('play', { path: reader.result as string });
-      }, 500); // Delay hiding the progress bar to show 100% for a moment
-    };
-
-    reader.onerror = () => {
-      console.error("Error loading file:", reader.error);
-      setLoading(false);
-    };
-
-    reader.readAsDataURL(file);
-    startProgressSimulation(); // Start the fake progress simulation
-  };
-
-  const startProgressSimulation = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-    }
-    timerRef.current = setInterval(() => {
-      setProgress(prev => {
-        const nextProgress = prev + 1;
-        if (nextProgress >= 100) {
-          clearInterval(timerRef.current!);
-          return 100;
-        }
-        return nextProgress;
-      });
-    }, 100); // Update progress every 100ms
+    invoke('set_volume', { volume: value / 100 });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
-      if (file.name.length <= 255) {
-        simulateLoadingProgress(file);
-      } else {
-        console.error("File path is too long");
-      }
+      setSongName(file.name);
+      invoke('play_audio', { file_path: file.path }); // Adjust file path handling as needed
     }
   };
 
@@ -147,7 +97,7 @@ const App: React.FC = () => {
               <img
                 src="https://64.media.tumblr.com/33e368bd4b99ee756fb59d367972e0b4/a3308f90a5978617-32/s540x810/970a4ede9f82f9db2069ce999a2754e7ee98e29a.png"
                 alt="start logo"
-                style={{ height: '45px',marginRight: '4px' }}
+                style={{ height: '45px', marginRight: '4px' }}
               />
               The Audio Player95
             </Button>
@@ -181,13 +131,12 @@ const App: React.FC = () => {
                 style={{ display: 'none' }} 
                 onChange={handleFileChange} 
               />
-              <audio ref={audioRef} />
               <Controls>
                 <Button onClick={handlePlayPause}>
                   {isPlaying ? 'Pause' : 'Play'}
                 </Button>
                 <Button onClick={() => {
-                  invoke('stop');
+                  invoke('stop_audio');
                   setIsPlaying(false);
                 }}>
                   Stop
