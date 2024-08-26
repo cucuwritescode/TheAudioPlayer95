@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, MenuList, MenuListItem, AppBar, Toolbar } from "react95";
+import { Monitor } from "react95";
 import original from "react95/dist/themes/millenium";
 import "./App.css";
 
@@ -122,9 +123,14 @@ const App: React.FC = () => {
                     <span role="img" aria-label="file">📁</span> Load File
                   </MenuListItem>
                 </MenuList>
-                <div style={{ background: '#ffffff', color: '#00ff00', marginLeft: '10px', width: '200px' }}>
-                  <div>{songName || "No song loaded"}</div>
-                </div>
+                <Monitor
+                  backgroundColor="f9fdff"
+                  color="#00ff00"
+                  showSideButtons={false}
+                  style={{ marginLeft: '10px', width: '200px' }}
+                  >
+                    <div>{songName || "No song loaded"}</div>
+                  </Monitor>
               </MonitorContainer>
               <input 
                 type="file" 
