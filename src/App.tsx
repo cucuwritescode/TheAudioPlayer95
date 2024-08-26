@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
-import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, MenuList, MenuListItem, AppBar, Toolbar } from "react95";
-import { Monitor } from "react95";
+import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, MenuList, MenuListItem, AppBar, Toolbar, Monitor } from "react95";
 import original from "react95/dist/themes/millenium";
 import "./App.css";
+import { invoke } from "@tauri-apps/api/tauri";
 
+// Global styles for the application
 const GlobalStyles = createGlobalStyle`
   ${styleReset}
   body {
@@ -15,6 +16,7 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+// Styled components
 const AppContainer = styled.div`
   height: 100vh;
   display: flex;
@@ -45,17 +47,50 @@ const MonitorContainer = styled.div`
   align-items: center;
 `;
 
+const FolderList = styled.ul`
+  list-style: none;
+  padding-left: 10px;
+  font-family: "Courier New", Courier, monospace;
+`;
+
+const FolderItem = styled.li`
+  margin: 5px 0;
+  cursor: pointer;
+  font-size: 14px; /* Adjusted font size */
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 const StyledAppBar = styled(AppBar)`
   width: 100%;
   height: 30px;
 `;
 
+// TypeScript type for audio tracks
+interface AudioTrack {
+  id: string;
+  name: string;
+  path: string;
+}
+
+// Main component
 const App: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [songName, setSongName] = useState("");
-  const [volume, setVolume] = useState(0.5); //rango de volumen de 0.0 a 1.0
+  const [volume, setVolume] = useState(0.5);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [tracks, setTracks] = useState<AudioTrack[]>([]);
+
+  // Load tracks on component mount
+  useEffect(() => {
+    async function fetchTracks() {
+      const tracks = await listTracks();
+      setTracks(tracks);
+    }
+    fetchTracks();
+  }, []);
 
   const handlePlayPause = () => {
     if (audioRef.current) {
@@ -69,18 +104,18 @@ const App: React.FC = () => {
   };
 
   const handleVolumeChange = (value: number) => {
-    console.log("Volume changed:", value);
     setVolume(value);
     if (audioRef.current) {
       audioRef.current.volume = value;
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files[0];
       const fileURL = URL.createObjectURL(file);
       setSongName(file.name);
+      await addTrack(file.name, file.name, fileURL);
       if (audioRef.current) {
         audioRef.current.src = fileURL;
         audioRef.current.play();
@@ -94,6 +129,30 @@ const App: React.FC = () => {
       fileInputRef.current.click();
     }
   };
+
+  const handleTrackClick = (track: AudioTrack) => {
+    setSongName(track.name);
+    if (audioRef.current) {
+      audioRef.current.src = track.path;
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  // Functions for CRUD operations
+  async function addTrack(id: string, name: string, path: string) {
+    await invoke("add_audio_track", { id, name, path });
+    setTracks((prevTracks) => [...prevTracks, { id, name, path }]);
+  }
+
+  async function removeTrack(id: string) {
+    await invoke("remove_audio_track", { id });
+    setTracks((prevTracks) => prevTracks.filter((track) => track.id !== id));
+  }
+
+  async function listTracks(): Promise<AudioTrack[]> {
+    return await invoke("list_audio_tracks");
+  }
 
   return (
     <ThemeProvider theme={original}>
@@ -112,21 +171,30 @@ const App: React.FC = () => {
           </Toolbar>
         </StyledAppBar>
         <WindowContainer>
-          <Window style={{ width: 600 }}>
+          <Window style={{ width: 750 }}>
             <WindowHeader>
               <span>the-audio-player95.exe</span>
             </WindowHeader>
             <WindowContent>
-            <MonitorContainer>
-  <MenuList>
-    <MenuListItem onClick={handleMenuClick}>
-      <span role="img" aria-label="file">📁</span> Load File
-    </MenuListItem>
-  </MenuList>
-  <div style={{ background: '#ffffff', color: '#080808', marginLeft: '15px', width: '150px', padding: '1px' }}>
-    <div>{songName || "No song loaded"}</div>
-  </div>
-</MonitorContainer>
+              <MonitorContainer>
+                <MenuList>
+                  <MenuListItem onClick={handleMenuClick}>
+                    <span role="img" aria-label="file">📁</span> Load File
+                  </MenuListItem>
+                </MenuList>
+                <Monitor background="white" text="black" style={{ width: '400px', height: '100px', marginLeft: '15px' }}>
+                  <div style={{ padding: '5px', color: '#000000' }}>
+                    {songName || "No song loaded"}
+                  </div>
+                </Monitor>
+                <FolderList>
+                  {tracks.map((track) => (
+                    <FolderItem key={track.id} onClick={() => handleTrackClick(track)}>
+                      {track.name}
+                    </FolderItem>
+                  ))}
+                </FolderList>
+              </MonitorContainer>
               <input 
                 type="file" 
                 accept="audio/*" 
@@ -150,10 +218,10 @@ const App: React.FC = () => {
                 <Slider
                   min={0}
                   max={1}
-                  step={0.01}
+                  step={0.001}
                   value={volume}
-                  onChange={(value: number) => handleVolumeChange(value)}
-                  style={{ marginLeft: '10px', width: '150px' }}
+                  onChange={(e) => handleVolumeChange(Number(e))}
+                  style={{ marginLeft: '330px', width: '300px' }} // Adjust the width here
                 />
               </Controls>
             </WindowContent>
