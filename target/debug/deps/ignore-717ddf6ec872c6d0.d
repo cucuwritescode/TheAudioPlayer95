@@ -1,0 +1,12 @@
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libignore-717ddf6ec872c6d0.rmeta: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/default_types.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/dir.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/gitignore.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/overrides.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/pathutil.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/types.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/walk.rs
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/ignore-717ddf6ec872c6d0.d: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/default_types.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/dir.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/gitignore.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/overrides.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/pathutil.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/types.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/walk.rs
+
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/lib.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/default_types.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/dir.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/gitignore.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/overrides.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/pathutil.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/types.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ignore-0.4.22/src/walk.rs:

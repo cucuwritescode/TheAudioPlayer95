@@ -1,0 +1,11 @@
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libwry-3c6a3d25cf322a71.rmeta: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/application.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/web_context.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/wkwebview/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/wkwebview/download.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/wkwebview/file_drop.rs
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/wry-3c6a3d25cf322a71.d: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/application.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/web_context.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/wkwebview/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/wkwebview/download.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/wkwebview/file_drop.rs
+
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/lib.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/application.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/mod.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/web_context.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/wkwebview/mod.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/wkwebview/download.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wry-0.24.10/src/webview/wkwebview/file_drop.rs:

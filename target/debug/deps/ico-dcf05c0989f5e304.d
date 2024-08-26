@@ -1,0 +1,12 @@
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libico-dcf05c0989f5e304.rmeta: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/macros.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/bmpdepth.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/icondir.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/image.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/restype.rs
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libico-dcf05c0989f5e304.rlib: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/macros.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/bmpdepth.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/icondir.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/image.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/restype.rs
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/ico-dcf05c0989f5e304.d: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/macros.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/bmpdepth.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/icondir.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/image.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/restype.rs
+
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/lib.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/macros.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/bmpdepth.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/icondir.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/image.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ico-0.3.0/src/restype.rs:

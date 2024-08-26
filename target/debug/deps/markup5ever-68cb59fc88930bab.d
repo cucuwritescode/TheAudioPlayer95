@@ -1,0 +1,15 @@
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libmarkup5ever-68cb59fc88930bab.rmeta: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/data/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/interface/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/interface/tree_builder.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/serialize.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/util/buffer_queue.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/util/smallcharset.rs /Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/markup5ever-b2482d3dc775baaa/out/generated.rs /Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/markup5ever-b2482d3dc775baaa/out/named_entities.rs
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/markup5ever-68cb59fc88930bab.d: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/data/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/interface/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/interface/tree_builder.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/serialize.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/util/buffer_queue.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/util/smallcharset.rs /Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/markup5ever-b2482d3dc775baaa/out/generated.rs /Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/markup5ever-b2482d3dc775baaa/out/named_entities.rs
+
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/lib.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/data/mod.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/interface/mod.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/interface/tree_builder.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/serialize.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/util/buffer_queue.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/markup5ever-0.11.0/util/smallcharset.rs:
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/markup5ever-b2482d3dc775baaa/out/generated.rs:
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/markup5ever-b2482d3dc775baaa/out/named_entities.rs:
+
+# env-dep:OUT_DIR=/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/markup5ever-b2482d3dc775baaa/out

@@ -1,8 +1,4 @@
-[package]
-name = "TheAudioPlayer"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-tauri = { version = "1.0", features = ["api-all"] }
-symphonia = { version = "0.5.4", features = ["aac", "flac", "mp3", "vorbis", "wav"] }
+[workspace]
+members = [
+    "src-tauri",
+]

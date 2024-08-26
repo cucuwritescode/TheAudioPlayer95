@@ -1,0 +1,14 @@
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libuuid-41ecc898ce9ecc1b.rmeta: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/builder.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/error.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/parser.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/fmt.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/timestamp.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/v4.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/rng.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/external.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/macros.rs
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/uuid-41ecc898ce9ecc1b.d: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/builder.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/error.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/parser.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/fmt.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/timestamp.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/v4.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/rng.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/external.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/macros.rs
+
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/lib.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/builder.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/error.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/parser.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/fmt.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/timestamp.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/v4.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/rng.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/external.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/uuid-1.10.0/src/macros.rs:

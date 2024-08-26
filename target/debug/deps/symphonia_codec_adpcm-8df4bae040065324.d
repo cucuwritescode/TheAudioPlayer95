@@ -1,0 +1,10 @@
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libsymphonia_codec_adpcm-8df4bae040065324.rmeta: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/codec_ima.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/codec_ms.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/common.rs
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libsymphonia_codec_adpcm-8df4bae040065324.rlib: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/codec_ima.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/codec_ms.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/common.rs
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/symphonia_codec_adpcm-8df4bae040065324.d: /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/codec_ima.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/codec_ms.rs /Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/common.rs
+
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/lib.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/codec_ima.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/codec_ms.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-6f17d22bba15001f/symphonia-codec-adpcm-0.5.4/src/common.rs:

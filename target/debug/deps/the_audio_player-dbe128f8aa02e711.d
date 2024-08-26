@@ -1,0 +1,11 @@
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libthe_audio_player-dbe128f8aa02e711.rmeta: src-tauri/src/main.rs /Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/the-audio-player-c9c07d43284ce1ad/out/icon.icns /Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/the-audio-player-c9c07d43284ce1ad/out/Info.plist
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/the_audio_player-dbe128f8aa02e711.d: src-tauri/src/main.rs /Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/the-audio-player-c9c07d43284ce1ad/out/icon.icns /Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/the-audio-player-c9c07d43284ce1ad/out/Info.plist
+
+src-tauri/src/main.rs:
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/the-audio-player-c9c07d43284ce1ad/out/icon.icns:
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/the-audio-player-c9c07d43284ce1ad/out/Info.plist:
+
+# env-dep:CARGO_PKG_AUTHORS=you
+# env-dep:CARGO_PKG_DESCRIPTION=A Tauri App
+# env-dep:OUT_DIR=/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/build/the-audio-player-c9c07d43284ce1ad/out
