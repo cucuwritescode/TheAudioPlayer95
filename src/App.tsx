@@ -117,21 +117,16 @@ const App: React.FC = () => {
               <span>the-audio-player95.exe</span>
             </WindowHeader>
             <WindowContent>
-              <MonitorContainer>
-                <MenuList>
-                  <MenuListItem onClick={handleMenuClick}>
-                    <span role="img" aria-label="file">📁</span> Load File
-                  </MenuListItem>
-                </MenuList>
-                <Monitor
-                  backgroundColor="f9fdff"
-                  color="#00ff00"
-                  showSideButtons={false}
-                  style={{ marginLeft: '10px', width: '200px' }}
-                  >
-                    <div>{songName || "No song loaded"}</div>
-                  </Monitor>
-              </MonitorContainer>
+            <MonitorContainer>
+  <MenuList>
+    <MenuListItem onClick={handleMenuClick}>
+      <span role="img" aria-label="file">📁</span> Load File
+    </MenuListItem>
+  </MenuList>
+  <div style={{ background: '#ffffff', color: '#080808', marginLeft: '10px', width: '200px', padding: '5px' }}>
+    <div>{songName || "No song loaded"}</div>
+  </div>
+</MonitorContainer>
               <input 
                 type="file" 
                 accept="audio/*" 
