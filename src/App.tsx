@@ -123,7 +123,7 @@ const App: React.FC = () => {
       <span role="img" aria-label="file">📁</span> Load File
     </MenuListItem>
   </MenuList>
-  <div style={{ background: '#ffffff', color: '#080808', marginLeft: '10px', width: '200px', padding: '5px' }}>
+  <div style={{ background: '#ffffff', color: '#080808', marginLeft: '15px', width: '150px', padding: '1px' }}>
     <div>{songName || "No song loaded"}</div>
   </div>
 </MonitorContainer>
