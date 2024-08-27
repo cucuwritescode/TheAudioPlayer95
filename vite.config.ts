@@ -9,7 +9,11 @@ export default defineConfig({
     port: 4000,
     strictPort: true,
     fs: {
-      strict: true,
+      allow: [
+        '/Users/cucu/Documents/GitHub/TheAudioPlayer', // Add your project path here
+        '/Users/cucu/node_modules/@react95/core', // Allow Vite to serve from here as well
+      ],
+      strict: false,
     },
     watch: {
       ignored: ["**/src-tauri/**"],

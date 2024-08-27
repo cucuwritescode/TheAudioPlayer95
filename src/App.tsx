@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
-import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, MenuList, MenuListItem, AppBar, Toolbar, Monitor } from "react95";
+import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, MenuList, MenuListItem, AppBar, Toolbar } from "react95";
 import original from "react95/dist/themes/millenium";
 import "./App.css";
 import { invoke } from "@tauri-apps/api/tauri";
+import { Tree } from "@react95/core";
 
 // Global styles for the application
 const GlobalStyles = createGlobalStyle`
@@ -16,7 +17,6 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-// Styled components
 const AppContainer = styled.div`
   height: 100vh;
   display: flex;
@@ -45,21 +45,6 @@ const Controls = styled.div`
 const MonitorContainer = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const FolderList = styled.ul`
-  list-style: none;
-  padding-left: 10px;
-  font-family: "Courier New", Courier, monospace;
-`;
-
-const FolderItem = styled.li`
-  margin: 5px 0;
-  cursor: pointer;
-  font-size: 14px; /* Adjusted font size */
-  &:hover {
-    text-decoration: underline;
-  }
 `;
 
 const StyledAppBar = styled(AppBar)`
@@ -139,6 +124,18 @@ const App: React.FC = () => {
     }
   };
 
+  // Prepare tree data
+  const data = [
+    {
+      id: 'root',
+      label: 'Music Library',
+      children: tracks.map(track => ({
+        id: track.id,
+        label: track.name,
+      })),
+    },
+  ];
+
   // Functions for CRUD operations
   async function addTrack(id: string, name: string, path: string) {
     await invoke("add_audio_track", { id, name, path });
@@ -183,17 +180,25 @@ const App: React.FC = () => {
                   </MenuListItem>
                 </MenuList>
                 <Monitor background="white" text="black" style={{ width: '400px', height: '100px', marginLeft: '15px' }}>
-                  <div style={{ padding: '5px', color: '#000000' }}>
-                    {songName || "No song loaded"}
+                  <div style={{ padding: '10px', color: '#000000' }}>
+                    {songName || "No songs loaded"}
                   </div>
                 </Monitor>
-                <FolderList>
-                  {tracks.map((track) => (
-                    <FolderItem key={track.id} onClick={() => handleTrackClick(track)}>
-                      {track.name}
-                    </FolderItem>
-                  ))}
-                </FolderList>
+                <Tree
+                  data={data}
+                  onNodeClick={(e: React.MouseEvent, node: any) => {
+                    const selectedTrack = tracks.find(track => track.id === node.id);
+                    if (selectedTrack) {
+                      handleTrackClick(selectedTrack);
+                    }
+                  }}
+                  style={{
+                    width: '100%',
+                    height: '150px',
+                    marginLeft: '20px',
+                    border: 'none', // Remove the black border around the '+'
+                  }}
+                />
               </MonitorContainer>
               <input 
                 type="file" 
