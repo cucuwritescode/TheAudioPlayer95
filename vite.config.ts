@@ -10,8 +10,8 @@ export default defineConfig({
     strictPort: true,
     fs: {
       allow: [
-        '/Users/cucu/Documents/GitHub/TheAudioPlayer', // Add your project path here
-        '/Users/cucu/node_modules/@react95/core', // Allow Vite to serve from here as well
+        '/Users/cucu/Documents/GitHub/TheAudioPlayer', 
+        '/Users/cucu/node_modules/@react95/core', 
       ],
       strict: false,
     },
