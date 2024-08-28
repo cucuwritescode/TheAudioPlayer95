@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
-import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, MenuList, MenuListItem, AppBar, Toolbar } from "react95";
+import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, MenuList, MenuListItem, AppBar, Toolbar, Monitor, GroupBox } from "react95";
 import original from "react95/dist/themes/millenium";
 import "./App.css";
 import { invoke } from "@tauri-apps/api/tauri";
-import { Tree } from "@react95/core";
+import { TreeView } from "react95";
 
 // Global styles for the application
 const GlobalStyles = createGlobalStyle`
@@ -17,6 +17,7 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+// Styled components
 const AppContainer = styled.div`
   height: 100vh;
   display: flex;
@@ -26,6 +27,38 @@ const AppContainer = styled.div`
   position: relative;
 `;
 
+
+const CustomGroupBox = styled(GroupBox)`
+  margin-left: 5px;  
+  margin-right: -300px;  
+  padding: 5px;
+  width: 230px;  
+  height: 230px; 
+  overflow: auto;
+`;
+
+
+const CustomTreeView = styled(TreeView)`
+  & .tree-node {
+    font-size: 12px; /*  */
+    max-width: 200px; /*  */
+    overflow: hidden; /*  */
+    text-overflow: ellipsis; /*  */
+    white-space: nowrap; /*  */
+  }
+
+  & .tree-node:hover {
+    overflow: visible;
+    white-space: normal; /*  */
+  }
+
+  & .tree-label {
+    max-width: 200px; /*  */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+`;
 const WindowContainer = styled.div`
   flex-grow: 1;
   display: flex;
@@ -129,7 +162,7 @@ const App: React.FC = () => {
     {
       id: 'root',
       label: 'Music Library',
-      children: tracks.map(track => ({
+      items: tracks.map(track => ({
         id: track.id,
         label: track.name,
       })),
@@ -184,21 +217,31 @@ const App: React.FC = () => {
                     {songName || "No songs loaded"}
                   </div>
                 </Monitor>
-                <Tree
-                  data={data}
-                  onNodeClick={(e: React.MouseEvent, node: any) => {
-                    const selectedTrack = tracks.find(track => track.id === node.id);
-                    if (selectedTrack) {
-                      handleTrackClick(selectedTrack);
-                    }
-                  }}
-                  style={{
-                    width: '100%',
-                    height: '150px',
-                    marginLeft: '20px',
-                    border: 'none', // Remove the black border around the '+'
-                  }}
-                />
+                <CustomGroupBox label="" style={{ width: '250px', 
+    height: '200px', 
+    overflowY: 'auto', 
+    marginRight: '10px', // Adjust margin as needed
+    padding: '10px' }}>
+  <CustomTreeView
+  tree={data}
+  onNodeSelect={(_, id) => {
+    const selectedTrack = tracks.find(track => track.id === id);
+    if (selectedTrack && audioRef.current) {
+      setSongName(selectedTrack.name); // Update song name in the monitor
+      audioRef.current.src = selectedTrack.path;
+      audioRef.current.play();
+      setIsPlaying(true);
+    }
+  }}
+  style={{
+    fontSize: '12px',
+    maxWidth: '200px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+  }}
+/>
+</CustomGroupBox>
               </MonitorContainer>
               <input 
                 type="file" 
