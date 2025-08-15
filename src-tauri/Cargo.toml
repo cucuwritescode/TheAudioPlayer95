@@ -16,7 +16,30 @@ cpal = "0.15.3"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 warp = "0.3"
-uuid = "1.0"
+uuid = { version = "1.0", features = ["v4"] }
+
+# Audio processing
+rubato = "0.14"  # Resampling
+ringbuf = "0.3"  # Ring buffer for audio streaming
+
+# Audio analysis (we'll add these progressively)
+# aubio-rs = "0.2"  # For BPM detection (requires aubio C library)
+# rustfft = "6.1"  # For spectral analysis
+
+# Database
+sqlx = { version = "0.7", features = ["sqlite", "runtime-tokio-native-tls"] }
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# HTTP client for APIs
+reqwest = { version = "0.11", features = ["json"] }
+
+# Utilities
+anyhow = "1.0"
+thiserror = "1.0"
+log = "0.4"
+env_logger = "0.10"
 
 [build-dependencies]
 tauri-build = { version = "1", features = [] }
