@@ -1,0 +1,10 @@
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/symphonia_utils_xiph-8a0b62accf0aa18d.d: /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/flac/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/flac/metadata.rs /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/vorbis/mod.rs
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libsymphonia_utils_xiph-8a0b62accf0aa18d.rlib: /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/flac/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/flac/metadata.rs /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/vorbis/mod.rs
+
+/Users/cucu/Documents/GitHub/TheAudioPlayer/target/debug/deps/libsymphonia_utils_xiph-8a0b62accf0aa18d.rmeta: /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/lib.rs /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/flac/mod.rs /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/flac/metadata.rs /Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/vorbis/mod.rs
+
+/Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/lib.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/flac/mod.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/flac/metadata.rs:
+/Users/cucu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/symphonia-utils-xiph-0.5.4/src/vorbis/mod.rs:

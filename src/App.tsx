@@ -4,6 +4,7 @@ import { styleReset, Button, Window, WindowHeader, WindowContent, Slider, MenuLi
 import original from "react95/dist/themes/millenium";
 import "./App.css";
 import { invoke } from "@tauri-apps/api/tauri";
+import { open } from "@tauri-apps/api/dialog";
 import { TreeView } from "react95";
 
 // Global styles for the application
@@ -97,8 +98,6 @@ const App: React.FC = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [songName, setSongName] = useState("");
   const [volume, setVolume] = useState(0.5);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [tracks, setTracks] = useState<AudioTrack[]>([]);
 
   // Load tracks on component mount
@@ -110,50 +109,63 @@ const App: React.FC = () => {
     fetchTracks();
   }, []);
 
-  const handlePlayPause = () => {
-    if (audioRef.current) {
+  const handlePlayPause = async () => {
+    try {
       if (isPlaying) {
-        audioRef.current.pause();
+        await invoke("pause_audio");
       } else {
-        audioRef.current.play();
+        await invoke("play_audio");
       }
       setIsPlaying(!isPlaying);
+    } catch (error) {
+      console.error("Error toggling playback:", error);
     }
   };
 
-  const handleVolumeChange = (value: number) => {
+  const handleVolumeChange = async (value: number) => {
     setVolume(value);
-    if (audioRef.current) {
-      audioRef.current.volume = value;
+    try {
+      // Convert 0-1 range to 0-100 for Rust backend
+      const volumePercent = Math.round(value * 100);
+      await invoke("set_volume", { volume: volumePercent });
+    } catch (error) {
+      console.error("Error setting volume:", error);
     }
   };
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files[0];
-      const fileURL = URL.createObjectURL(file);
-      setSongName(file.name);
-      await addTrack(file.name, file.name, fileURL);
-      if (audioRef.current) {
-        audioRef.current.src = fileURL;
-        audioRef.current.play();
+
+  const handleMenuClick = async () => {
+    try {
+      // Use Tauri's file dialog
+      const selected = await open({
+        multiple: false,
+        filters: [{
+          name: 'Audio',
+          extensions: ['mp3', 'wav', 'flac', 'aac', 'ogg', 'm4a']
+        }]
+      });
+      
+      if (selected && typeof selected === 'string') {
+        const fileName = selected.split('/').pop() || selected.split('\\').pop() || 'Unknown';
+        setSongName(fileName);
+        
+        // Add to tracks and play
+        await addTrack(fileName, fileName, selected);
+        await invoke("play_track", { filePath: selected });
         setIsPlaying(true);
       }
+    } catch (error) {
+      console.error("Error selecting file:", error);
     }
   };
 
-  const handleMenuClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
-
-  const handleTrackClick = (track: AudioTrack) => {
+  const handleTrackClick = async (track: AudioTrack) => {
     setSongName(track.name);
-    if (audioRef.current) {
-      audioRef.current.src = track.path;
-      audioRef.current.play();
+    try {
+      await invoke("play_track", { filePath: track.path });
       setIsPlaying(true);
+    } catch (error) {
+      console.error("Error playing track:", error);
     }
   };
 
@@ -224,13 +236,16 @@ const App: React.FC = () => {
     padding: '10px' }}>
   <CustomTreeView
   tree={data}
-  onNodeSelect={(_, id) => {
+  onNodeSelect={async (_, id) => {
     const selectedTrack = tracks.find(track => track.id === id);
-    if (selectedTrack && audioRef.current) {
+    if (selectedTrack) {
       setSongName(selectedTrack.name); // Update song name in the monitor
-      audioRef.current.src = selectedTrack.path;
-      audioRef.current.play();
-      setIsPlaying(true);
+      try {
+        await invoke("play_track", { filePath: selectedTrack.path });
+        setIsPlaying(true);
+      } catch (error) {
+        console.error("Error playing track:", error);
+      }
     }
   }}
   style={{
@@ -243,22 +258,16 @@ const App: React.FC = () => {
 />
 </CustomGroupBox>
               </MonitorContainer>
-              <input 
-                type="file" 
-                accept="audio/*" 
-                ref={fileInputRef} 
-                style={{ display: 'none' }} 
-                onChange={handleFileChange} 
-              />
               <Controls>
                 <Button onClick={handlePlayPause}>
                   {isPlaying ? 'Pause' : 'Play'}
                 </Button>
-                <Button onClick={() => {
-                  if (audioRef.current) {
-                    audioRef.current.pause();
-                    audioRef.current.currentTime = 0;
+                <Button onClick={async () => {
+                  try {
+                    await invoke("stop_audio");
                     setIsPlaying(false);
+                  } catch (error) {
+                    console.error("Error stopping audio:", error);
                   }
                 }}>
                   Stop
@@ -275,7 +284,6 @@ const App: React.FC = () => {
             </WindowContent>
           </Window>
         </WindowContainer>
-        <audio ref={audioRef} />
       </AppContainer>
     </ThemeProvider>
   );

@@ -1,4 +1,5 @@
 use anyhow::{Context, Result};
+use serde::{Deserialize, Serialize};
 use std::fs::File;
 use std::path::Path;
 use symphonia::core::audio::{AudioBufferRef, SampleBuffer, SignalSpec};
@@ -131,10 +132,8 @@ impl AudioDecoder {
 
     /// Seek to a specific position in seconds
     pub fn seek(&mut self, seconds: f64) -> Result<()> {
-        let ts = (seconds * self.spec.rate as f64) as u64;
-        
         // Seek to the target timestamp
-        let seeked_to = self.format.seek(
+        let _seeked_to = self.format.seek(
             symphonia::core::formats::SeekMode::Accurate,
             symphonia::core::formats::SeekTo::Time {
                 time: symphonia::core::units::Time {
@@ -152,7 +151,7 @@ impl AudioDecoder {
     }
 
     /// Get metadata about the track
-    pub fn metadata(&self) -> TrackMetadata {
+    pub fn metadata(&mut self) -> TrackMetadata {
         let mut metadata = TrackMetadata::default();
 
         if let Some(meta) = self.format.metadata().current() {
@@ -179,7 +178,7 @@ impl AudioDecoder {
     }
 }
 
-#[derive(Debug, Default, Clone)]
+#[derive(Debug, Default, Clone, Serialize, Deserialize)]
 pub struct TrackMetadata {
     pub title: String,
     pub artist: String,
