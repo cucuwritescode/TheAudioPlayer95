@@ -14,7 +14,7 @@ Retro-inspired audio player that emulates the beloved classic Windows 95 UI. Mad
                   │
 ┌─────────────────┴───────────────────────────┐
 │          Tauri Command Layer                │
-│  (play, pause, analyze, get_recommendations)│
+│  (play, pause, analyse, get_recommendations)│
 └─────────────────┬───────────────────────────┘
                   │
 ┌─────────────────┴───────────────────────────┐
@@ -55,4 +55,4 @@ Retro-inspired audio player that emulates the beloved classic Windows 95 UI. Mad
 - **Smart Recommendations**: AI-powered music discovery based on audio analysis
 - **Real-time Analysis**: BPM detection, key detection, and genre classification
 - **Seamless Playback**: Gapless playback with advanced buffering
-- **Music Discovery**: Personalized recommendations from local analysis and external APIs
+- **Music Discovery**: Personalised recommendations from local analysis and external APIs
